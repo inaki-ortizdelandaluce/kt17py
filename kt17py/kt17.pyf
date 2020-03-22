@@ -1,0 +1,210 @@
+!    -*- f90 -*-
+! Note: the context of this file is case sensitive.
+
+python module kt17 ! in 
+    interface  ! in :kt17
+        subroutine kt17_initialize ! in :kt17:kt17.f90
+            real*8 :: mu
+            real*8 :: tilt
+            real*8 :: pdip
+            real*8 :: psun
+            real*8 :: rdx
+            real*8 :: rdy
+            real*8 :: rdz
+            real*8 :: rss
+            real*8 :: r0
+            real*8 :: alfa
+            real*8 :: tamp1
+            real*8 :: tamp2
+            real*8 :: d0
+            real*8 :: deltadx
+            real*8 :: deltady
+            real*8 :: scalex
+            real*8 :: scaley
+            real*8 :: zshift
+            real*8 dimension(15) :: r_taildisk
+            real*8 dimension(20) :: r_dipshld
+            real*8 dimension(42) :: r_diskshld
+            real*8 dimension(42) :: r_slabshld
+            real*8 :: mptol
+            common /par/ mu,tilt,pdip,psun,rdx,rdy,rdz,rss,r0,alfa,tamp1,tamp2,d0,deltadx,deltady,scalex,scaley,zshift,r_taildisk,r_dipshld,r_diskshld,r_slabshld,mptol
+        end subroutine kt17_initialize
+        subroutine kt17_bfield(n,x_a,y_a,z_a,bx_a,by_a,bz_a) ! in :kt17:kt17.f90
+            integer*4, optional,check(len(x_a)>=n),depend(x_a) :: n=len(x_a)
+            real*8 dimension(n),intent(in) :: x_a
+            real*8 dimension(n),depend(n),intent(in) :: y_a
+            real*8 dimension(n),depend(n),intent(in) :: z_a
+            real*8 dimension(n),depend(n),intent(out) :: bx_a
+            real*8 dimension(n),depend(n),intent(out) :: by_a
+            real*8 dimension(n),depend(n),intent(out) :: bz_a
+            real*8 :: mu
+            real*8 :: tilt
+            real*8 :: pdip
+            real*8 :: psun
+            real*8 :: rdx
+            real*8 :: rdy
+            real*8 :: rdz
+            real*8 :: rss
+            real*8 :: r0
+            real*8 :: alfa
+            real*8 :: tamp1
+            real*8 :: tamp2
+            real*8 :: d0
+            real*8 :: deltadx
+            real*8 :: deltady
+            real*8 :: scalex
+            real*8 :: scaley
+            real*8 :: zshift
+            real*8 dimension(15) :: r_taildisk
+            real*8 dimension(20) :: r_dipshld
+            real*8 dimension(42) :: r_diskshld
+            real*8 dimension(42) :: r_slabshld
+            real*8 :: mptol
+            common /par/ mu,tilt,pdip,psun,rdx,rdy,rdz,rss,r0,alfa,tamp1,tamp2,d0,deltadx,deltady,scalex,scaley,zshift,r_taildisk,r_dipshld,r_diskshld,r_slabshld,mptol
+        end subroutine kt17_bfield
+        subroutine kt17_dipole(xmsm,ymsm,zmsm,bx,by,bz) ! in :kt17:kt17.f90
+            real*8 :: xmsm
+            real*8 :: ymsm
+            real*8 :: zmsm
+            real*8 :: bx
+            real*8 :: by
+            real*8 :: bz
+            real*8 :: mu
+            real*8 :: tilt
+            real*8 :: pdip
+            real*8 :: psun
+            real*8 :: rdx
+            real*8 :: rdy
+            real*8 :: rdz
+            real*8 :: rss
+            real*8 :: r0
+            real*8 :: alfa
+            real*8 :: tamp1
+            real*8 :: tamp2
+            real*8 :: d0
+            real*8 :: deltadx
+            real*8 :: deltady
+            real*8 :: scalex
+            real*8 :: scaley
+            real*8 :: zshift
+            real*8 dimension(15) :: r_taildisk
+            real*8 dimension(20) :: r_dipshld
+            real*8 dimension(42) :: r_diskshld
+            real*8 dimension(42) :: r_slabshld
+            real*8 :: mptol
+            common /par/ mu,tilt,pdip,psun,rdx,rdy,rdz,rss,r0,alfa,tamp1,tamp2,d0,deltadx,deltady,scalex,scaley,zshift,r_taildisk,r_dipshld,r_diskshld,r_slabshld,mptol
+        end subroutine kt17_dipole
+        subroutine kt17_mpdist(mode,x,y,z,fi,id,gradfix,gradfiy,gradfiz) ! in :kt17:kt17.f90
+            integer*4 :: mode
+            real*8 :: x
+            real*8 :: y
+            real*8 :: z
+            real*8 :: fi
+            integer*4 :: id
+            real*8 :: gradfix
+            real*8 :: gradfiy
+            real*8 :: gradfiz
+            real*8 :: mu
+            real*8 :: tilt
+            real*8 :: pdip
+            real*8 :: psun
+            real*8 :: rdx
+            real*8 :: rdy
+            real*8 :: rdz
+            real*8 :: rss
+            real*8 :: r0
+            real*8 :: alfa
+            real*8 :: tamp1
+            real*8 :: tamp2
+            real*8 :: d0
+            real*8 :: deltadx
+            real*8 :: deltady
+            real*8 :: scalex
+            real*8 :: scaley
+            real*8 :: zshift
+            real*8 dimension(15) :: r_taildisk
+            real*8 dimension(20) :: r_dipshld
+            real*8 dimension(42) :: r_diskshld
+            real*8 dimension(42) :: r_slabshld
+            real*8 :: mptol
+            common /par/ mu,tilt,pdip,psun,rdx,rdy,rdz,rss,r0,alfa,tamp1,tamp2,d0,deltadx,deltady,scalex,scaley,zshift,r_taildisk,r_dipshld,r_diskshld,r_slabshld,mptol
+        end subroutine kt17_mpdist
+        subroutine kt17_shield(n,r,x,y,z,bx,by,bz) ! in :kt17:kt17.f90
+            integer*4, optional,check(len(r)>=n),depend(r) :: n=len(r)
+            real*8 dimension(n) :: r
+            real*8 :: x
+            real*8 :: y
+            real*8 :: z
+            real*8 :: bx
+            real*8 :: by
+            real*8 :: bz
+        end subroutine kt17_shield
+        subroutine kt17_taildisk(xmsm,ymsm,zmsm,bx,by,bz) ! in :kt17:kt17.f90
+            real*8 :: xmsm
+            real*8 :: ymsm
+            real*8 :: zmsm
+            real*8 :: bx
+            real*8 :: by
+            real*8 :: bz
+            real*8 :: mu
+            real*8 :: tilt
+            real*8 :: pdip
+            real*8 :: psun
+            real*8 :: rdx
+            real*8 :: rdy
+            real*8 :: rdz
+            real*8 :: rss
+            real*8 :: r0
+            real*8 :: alfa
+            real*8 :: tamp1
+            real*8 :: tamp2
+            real*8 :: d0
+            real*8 :: deltadx
+            real*8 :: deltady
+            real*8 :: scalex
+            real*8 :: scaley
+            real*8 :: zshift
+            real*8 dimension(15) :: r_taildisk
+            real*8 dimension(20) :: r_dipshld
+            real*8 dimension(42) :: r_diskshld
+            real*8 dimension(42) :: r_slabshld
+            real*8 :: mptol
+            common /par/ mu,tilt,pdip,psun,rdx,rdy,rdz,rss,r0,alfa,tamp1,tamp2,d0,deltadx,deltady,scalex,scaley,zshift,r_taildisk,r_dipshld,r_diskshld,r_slabshld,mptol
+        end subroutine kt17_taildisk
+        subroutine kt17_tailslab(xmsm,ymsm,zmsm,bx,by,bz) ! in :kt17:kt17.f90
+            real*8 :: xmsm
+            real*8 :: ymsm
+            real*8 :: zmsm
+            real*8 :: bx
+            real*8 :: by
+            real*8 :: bz
+            real*8 :: mu
+            real*8 :: tilt
+            real*8 :: pdip
+            real*8 :: psun
+            real*8 :: rdx
+            real*8 :: rdy
+            real*8 :: rdz
+            real*8 :: rss
+            real*8 :: r0
+            real*8 :: alfa
+            real*8 :: tamp1
+            real*8 :: tamp2
+            real*8 :: d0
+            real*8 :: deltadx
+            real*8 :: deltady
+            real*8 :: scalex
+            real*8 :: scaley
+            real*8 :: zshift
+            real*8 dimension(15) :: r_taildisk
+            real*8 dimension(20) :: r_dipshld
+            real*8 dimension(42) :: r_diskshld
+            real*8 dimension(42) :: r_slabshld
+            real*8 :: mptol
+            common /par/ mu,tilt,pdip,psun,rdx,rdy,rdz,rss,r0,alfa,tamp1,tamp2,d0,deltadx,deltady,scalex,scaley,zshift,r_taildisk,r_dipshld,r_diskshld,r_slabshld,mptol
+        end subroutine kt17_tailslab
+    end interface 
+end python module kt17
+
+! This file was auto-generated with f2py (version:2).
+! See http://cens.ioc.ee/projects/f2py2e/
