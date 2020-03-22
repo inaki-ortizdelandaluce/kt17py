@@ -31,5 +31,5 @@ if __name__ == "__main__":
             "License :: OSI Approved :: MIT License",
         ],
         install_requires=['numpy>=1.16'],
-        python_requires='>=3.6',
+        python_requires='>=2.7',
         )
