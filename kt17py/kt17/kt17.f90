@@ -1,10 +1,30 @@
 !-----------------------------------------------------------------------
 !     Subroutine KT17_ECHO
 !-----------------------------------------------------------------------
-subroutine kt17_initialize()
+subroutine kt17_initialize(rhel, act)
+
+! initializes KT17 setting dynamic parameters
+!
+!------------input parameters:
+!
+! rhel    - heliocentric distance in astronomical units
+! act     - disturbance index as defined by Anderson et al. (2013)
+!            A magnetic disturbance index for Mercury's magnetic field
+!            derived from MESSENGER Magnetometer data.
+!
+
     implicit none
+
+    real*8 f, rhel, act
+
     include 'kt17_common.f90'
     include 'kt17_param.f90'
+
+    f= 2.06873-0.00279*act   ! magnetopause scale factor
+    rss= f*rhel**(1.0/3.0) 
+    tamp1=6.4950+0.0229*act    
+    tamp2=1.6245+0.0088*act   
+
 end
 
 !-----------------------------------------------------------------------

@@ -3,7 +3,9 @@
 
 python module kt17 ! in 
     interface  ! in :kt17
-        subroutine kt17_initialize ! in :kt17:kt17.f90
+        subroutine kt17_initialize(rhel,act) ! in :kt17:kt17.f90
+            real*8, optional :: rhel=0.39
+            real*8, optional :: act=50.0
             real*8 :: mu
             real*8 :: tilt
             real*8 :: pdip

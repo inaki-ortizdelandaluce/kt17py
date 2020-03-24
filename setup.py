@@ -15,7 +15,7 @@ if __name__ == "__main__":
         long_description = fh.read()
 
     setup(name="kt17py", 
-        version="0.0.1a1",
+        version="0.0.1b1",
         author="Inaki Ortiz de Landaluce",
         author_email="inaki.ortizdelandaluce@gmail.com",
         description="A Python wrapper to the FORTRAN code for the KT17 dynamic magnetic field model for Mercury's magnetosphere",
