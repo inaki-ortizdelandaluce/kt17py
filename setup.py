@@ -27,7 +27,7 @@ if __name__ == "__main__":
           url="https://github.com/inaki-ortizdelandaluce/kt17py",
           packages=setuptools.find_packages(),
           ext_modules=[Extension(name='kt17py._kt17',
-                                 sources=['kt17py/kt17.pyf', 'kt17py/_kt17.f90'])],
+                                 sources=['kt17py/_kt17.pyf', 'kt17py/_kt17.f90'])],
           license="MIT",
           classifiers=[
               "Programming Language :: Python :: 3",

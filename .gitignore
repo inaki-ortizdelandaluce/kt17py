@@ -1,5 +1,4 @@
 /build/*
 /kt17py.egg-info/*
 /.idea/*
-/kt17py/__pycache__/*
-/kt17py/kt17/__pycache__/*
+*/__pycache__/*
