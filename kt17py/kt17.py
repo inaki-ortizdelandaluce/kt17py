@@ -34,8 +34,8 @@ class Kt17:
         """ Returns the magnetic field components  KT17 setting model's dynamic parameters
 
             :param xyz_msm: Mercury-centric Solar Magnetospheric coordinates in units of
-                            the Mercury radius.
-            :return the magnetic field components in Mercury-centric Solar Magnetospheric coordinates
+                            the Mercury radius (2440 Km).
+            :return the magnetic field components in Mercury-centric Solar Magnetospheric coordinates, in nT
 
         """
         self.logger.debug("KT17 Model: distance = {distance}UA, disturbance_index = {idx}"
@@ -54,5 +54,6 @@ class Kt17:
         y_msm = np.reshape(xyz_msm[:, 1:2], (m,))
         z_msm = np.reshape(xyz_msm[:, 2:], (m,))
 
-        b_msm = np.reshape(_kt17.kt17_bfield(x_msm, y_msm, z_msm), (m, 3))
-        return b_msm
+        b_msm = _kt17.kt17_bfield(x_msm, y_msm, z_msm)
+
+        return np.transpose(b_msm)

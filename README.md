@@ -15,3 +15,12 @@ kt17 = Kt17(0.39,0.50)
 xyz_msm = np.array([[-2.0,0.0,0.5]])
 b_msm = kt17.bfield(xyz_msm)
 ```
+
+# Testing builds
+
+Since kt17py contains Fortran files that need to be compiled before use, the tests are currently run against the version
+of kt17py (if any) found on current PYTHONPATH.
+
+```console
+python -m unittest tests/kt17.py
+```
