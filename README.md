@@ -11,7 +11,7 @@ magnetospheric magnetic field. Geophysical Research Letters, 44. https://doi.org
 import numpy as np
 from kt17py.kt17 import *
 
-kt17 = Kt17(0.39,0.50)
+kt17 = Kt17(0.39,50.0)
 xyz_msm = np.array([[-2.0,0.0,0.5]])
 b_msm = kt17.bfield(xyz_msm)
 ```
