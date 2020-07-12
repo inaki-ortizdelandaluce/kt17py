@@ -98,14 +98,14 @@ python module _kt17 ! in
         end subroutine kt17_dipole
         subroutine kt17_mpdist(mode,x,y,z,fi,id,gradfix,gradfiy,gradfiz) ! in :_kt17:_kt17.f90
             integer*4 :: mode
-            real*8 :: x
-            real*8 :: y
-            real*8 :: z
-            real*8 :: fi
-            integer*4 :: id
-            real*8 :: gradfix
-            real*8 :: gradfiy
-            real*8 :: gradfiz
+            real*8 intent(in) :: x
+            real*8 intent(in) :: y
+            real*8 intent(in) :: z
+            real*8 intent(out) :: fi
+            integer*4 intent(out) :: id
+            real*8 intent(out) :: gradfix
+            real*8 intent(out) :: gradfiy
+            real*8 intent(out) :: gradfiz
             real*8 :: mu
             real*8 :: tilt
             real*8 :: pdip

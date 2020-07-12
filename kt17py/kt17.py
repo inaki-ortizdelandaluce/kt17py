@@ -6,7 +6,7 @@ import logging
 
 class Kt17:
     def __init__(self, rhel, idx):
-        """ Initializes KT17 setting model's dynamic parameters
+        """ Initializes KT17 setting the dynamic parameters of the model
 
             :param rhel (float): heliocentric distance in astronomical units
             :param idx (float): disturbance index as defined by Anderson et al. (2013)
@@ -31,14 +31,15 @@ class Kt17:
         _kt17.kt17_initialize(self.rhel, self.idx)
 
     def bfield(self, xyz_msm):
-        """ Returns the magnetic field components  KT17 setting model's dynamic parameters
+        """ Returns the KT17 magnetic field components in Mercury-centric Solar Magnetospheric coordinates in nT units
+            corresponding to the given input position
 
-            :param xyz_msm: Mercury-centric Solar Magnetospheric coordinates in units of
+            :param xyz_msm: position in Mercury-centric Solar Magnetospheric coordinates in units of
                             the Mercury radius (2440 Km).
             :return the magnetic field components in Mercury-centric Solar Magnetospheric coordinates, in nT
 
         """
-        self.logger.debug("KT17 Model: distance = {distance}UA, disturbance_index = {idx}"
+        self.logger.debug("KT17 Model: distance = {distance} UA, disturbance_index = {idx}"
                           .format(distance=self.rhel, idx=self.idx))
 
         if not isinstance(xyz_msm, np.ndarray) or xyz_msm.ndim != 2:
@@ -57,3 +58,33 @@ class Kt17:
         b_msm = _kt17.kt17_bfield(x_msm, y_msm, z_msm)
 
         return np.transpose(b_msm)
+
+    def mpdist(self, xyz_msm):
+        """ Returns the distance to the magnetopause in Mercury radius units for the given input position
+            following Shue et al. (1997) magnetopause model
+
+            :param xyz_msm: position in Mercury-centric Solar Magnetospheric coordinates in units of
+                            the Mercury radius (2440 Km).
+            :return the distance to the magnetopause in Mercury radius units, negative if the input position is inside
+                    the magnetopause, positive if it is outside
+
+        """
+
+        self.logger.debug("KT17 Model: distance = {distance} UA, disturbance_index = {idx}"
+                          .format(distance=self.rhel, idx=self.idx))
+        if not isinstance(xyz_msm, np.ndarray) or xyz_msm.ndim != 1 or xyz_msm.size != 3:
+            raise TypeError("Input coordinates is not a valid 1d numpy array with 3 elements")
+        x_msm = xyz_msm[0]
+        y_msm = xyz_msm[1]
+        z_msm = xyz_msm[2]
+
+        distance, inside, *_ = _kt17.kt17_mpdist(0, x_msm, y_msm, z_msm)
+
+        if inside == 1:
+            self.logger.debug("Position [{x},{y},{x}] inside the magnetopause"
+                              .format(x=x_msm, y=y_msm, z=z_msm))
+        else:
+            self.logger.debug("Position [{x},{y},{x}] outside the magnetopause"
+                              .format(x=x_msm, y=y_msm, z=z_msm))
+
+        return distance
